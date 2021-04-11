@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            margin: auto;
+            padding: auto;
+        }
+
+        #navbar>ul {
+            margin: auto;
+            padding-left: 0px;
+            background-image: linear-gradient(midnightblue, mediumblue);
+        }
+
+        #navbar>ul>li {
+            display: inline;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        #navbar>ul>li>a {
+            text-decoration: none;
+            color: #ffffffd9;
+            font-size: 25px;
+        }
+
+        #col {
+            display: inline-block;
+            width: 70%;
+        }
+
+        form {
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: rgb(219, 238, 202);
+            width: 25%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        input {
+            margin: auto;
+            padding: auto;
+            width: 75%;
+        }
+
+        input[type=submit] {
+            width: 75%;
+        }
+
+        .bad {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/roster.html">Roster</a></li>
+            <li><a href="/patrol.html">Patrol</a></li>
+        </ul>
+    </nav>
+    <h1 id="userfield">Welcome to Hell, unregistered user!</h1>
+    <a href="/test.html">Testing</a>
+    <div>
+        <div id="col">
+            <h2>Register</h2>
+            <form action="/register.php" method="POST" role="form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname" required><br><br>
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <label for="passwordconf">Confirm Password:</label>
+                <input type="password" id="passwordconf" name="passwordconf" required>
+                <p id="passmatch" class="bad"></p>
+                <input id="submitbutton" type="submit" value="Submit" style="display: none">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("keyup", (event) => {
+            let pass = document.getElementById("password");
+            let passconf = document.getElementById("passwordconf");
+            let target = event.target;
+            if (target.id == pass.id || target.id == passconf.id) {
+                if (passconf.value.length >= pass.value.length) {
+                    let match = document.getElementById("passmatch");
+                    if (target.value == pass.value) {
+                        match.innerHTML = "";
+                        document.getElementById("submitbutton").style.display = "";
+                    } else {
+                        match.innerHTML = "Passwords do not match!"
+                        document.getElementById("submitbutton").style.display = "none";
+                        console.log("password mismatch!");
+                    }
+                }
+            }
+        }, false);
+    </script>
+
+</body>
+
+</html>
